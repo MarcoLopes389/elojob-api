@@ -4,32 +4,38 @@ import java.util.UUID;
 
 public class Chat {
     private UUID id;
-    private User userOne;
-    private User userTwo;
+    private User seller;
+    private User buyer;
+    private GameAccount gameAccount;
 
-    public Chat(UUID id, User userOne, User userTwo) {
-        if (userOne.equals(userTwo)) {
+    public Chat(UUID id, User seller, User buyer, GameAccount gameAccount) {
+        if (seller.equals(buyer)) {
             throw new IllegalArgumentException("A chat must involve two different users.");
         }
 
         this.id = id;
-        this.userOne= userOne;
-        this.userTwo = userTwo;
+        this.seller = seller;
+        this.buyer = buyer;
+        this.gameAccount = gameAccount;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public User getUserOne() {
-        return userOne;
+    public User getSeller() {
+        return seller;
     }
 
-    public User getUserTwo() {
-        return userTwo;
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public GameAccount getGameAccount() {
+        return gameAccount;
     }
 
     public boolean involvesUser(User user) {
-        return userOne.equals(user) || userTwo.equals(user);
+        return seller.equals(user) || buyer.equals(user);
     }
 }

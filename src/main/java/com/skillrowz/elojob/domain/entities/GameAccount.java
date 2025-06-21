@@ -11,13 +11,13 @@ public class GameAccount {
     private Game game;
     private boolean sold;
 
-    public GameAccount(UUID id, User owner, Game game, String encryptedUsername, String encryptedPassword) {
+    public GameAccount(UUID id, User owner, Game game, String encryptedUsername, String encryptedPassword, Boolean sold) {
         this.id = id;
         this.owner = owner;
         this.game = game;
         this.encryptedUsername = encryptedUsername;
         this.encryptedPassword = encryptedPassword;
-        this.sold = false;
+        this.sold = sold;
     }
 
     public UUID getId() {

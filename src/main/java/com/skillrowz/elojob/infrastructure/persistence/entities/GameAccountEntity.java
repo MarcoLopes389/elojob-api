@@ -58,11 +58,11 @@ public class GameAccountEntity {
         );
     }
 
-    public static GameAccountEntity fromDomain(GameAccount domain, UserEntity ownerEntity, GameEntity gameEntity) {
+    public static GameAccountEntity fromDomain(GameAccount domain) {
         return new GameAccountEntity(
                 domain.getId(),
-                ownerEntity,
-                gameEntity,
+                UserEntity.fromDomain(domain.getOwner()),
+                GameEntity.fromDomain(domain.getGame()),
                 domain.getEncryptedUsername(),
                 domain.getEncryptedPassword(),
                 domain.isSold()

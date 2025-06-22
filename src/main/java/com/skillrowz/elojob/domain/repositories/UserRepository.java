@@ -16,4 +16,9 @@ public class UserRepository {
 
         return user.map(UserEntity::toDomain).orElse(null);
     }
+
+    public User create(User user) {
+        var createdUser = userJpaRepository.save(UserEntity.fromDomain(user));
+        return createdUser.toDomain();
+    }
 }

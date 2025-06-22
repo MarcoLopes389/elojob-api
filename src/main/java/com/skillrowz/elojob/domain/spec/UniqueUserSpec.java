@@ -1,9 +1,16 @@
 package com.skillrowz.elojob.domain.spec;
 
 import com.skillrowz.elojob.domain.entities.User;
+import com.skillrowz.elojob.domain.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UniqueUserSpec {
+    @Autowired
+    private UserRepository userRepository;
+
     public boolean isSatisfiedBy(User user) {
-        return true;
+        var existingUser = userRepository.findByEmail(user.getEmail().getValue());
+
+        return existingUser == null;
     }
 }

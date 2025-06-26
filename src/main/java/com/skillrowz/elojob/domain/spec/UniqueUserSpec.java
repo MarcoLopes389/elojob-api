@@ -9,8 +9,8 @@ public class UniqueUserSpec {
     private UserRepository userRepository;
 
     public boolean isSatisfiedBy(User user) {
-        var existingUser = userRepository.findByEmail(user.getEmail().getValue());
+        var existingUser = userRepository.findByEmail(user.getEmail().value());
 
-        return existingUser == null;
+        return existingUser.isEmpty();
     }
 }

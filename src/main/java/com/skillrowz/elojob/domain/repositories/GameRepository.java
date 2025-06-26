@@ -6,14 +6,22 @@ import com.skillrowz.elojob.infrastructure.persistence.repositories.GameJpaRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Repository
 public class GameRepository {
     @Autowired
     private GameJpaRepository gameJpaRepository;
 
-    public Game findByName(String name) {
+    public Optional<Game> findByName(String name) {
         var game = gameJpaRepository.findByName(name);
-        return game.map(GameEntity::toDomain).orElse(null);
+        return game.map(GameEntity::toDomain);
+    }
+
+    public Optional<Game> findById(UUID id) {
+        var game = gameJpaRepository.findById(id);
+        return game.map(GameEntity::toDomain);
     }
 
     public Game create(Game game) {

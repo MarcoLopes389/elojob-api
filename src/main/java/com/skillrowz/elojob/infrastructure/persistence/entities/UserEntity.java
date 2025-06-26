@@ -55,7 +55,7 @@ public class UserEntity {
     public static UserEntity fromDomain(User domain) {
         return new UserEntity(
                 domain.getId(),
-                domain.getEmail().getValue(),
+                domain.getEmail().value(),
                 domain.getPassword(),
                 domain.getName(),
                 domain.getNickname()

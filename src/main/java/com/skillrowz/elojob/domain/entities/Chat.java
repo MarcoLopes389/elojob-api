@@ -1,5 +1,7 @@
 package com.skillrowz.elojob.domain.entities;
 
+import com.skillrowz.elojob.domain.exceptions.InvalidChatUsersException;
+
 import java.util.UUID;
 
 public class Chat {
@@ -9,14 +11,18 @@ public class Chat {
     private GameAccount gameAccount;
 
     public Chat(UUID id, User seller, User buyer, GameAccount gameAccount) {
-        if (seller.equals(buyer)) {
-            throw new IllegalArgumentException("A chat must involve two different users.");
-        }
+        validateUsers(seller, buyer);
 
         this.id = id;
         this.seller = seller;
         this.buyer = buyer;
         this.gameAccount = gameAccount;
+    }
+
+    private void validateUsers(User seller, User buyer) {
+        if (seller.equals(buyer)) {
+            throw new InvalidChatUsersException();
+        }
     }
 
     public UUID getId() {

@@ -6,15 +6,17 @@ import com.skillrowz.elojob.infrastructure.persistence.repositories.UserJpaRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class UserRepository {
     @Autowired
     private UserJpaRepository userJpaRepository;
 
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         var user = userJpaRepository.findByEmail(email);
 
-        return user.map(UserEntity::toDomain).orElse(null);
+        return user.map(UserEntity::toDomain);
     }
 
     public User create(User user) {

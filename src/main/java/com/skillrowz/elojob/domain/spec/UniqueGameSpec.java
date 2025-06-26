@@ -13,6 +13,6 @@ public class UniqueGameSpec {
     public boolean isSatisfiedBy(Game game) {
         var existingGame = gameRepository.findByName(game.getName());
 
-        return existingGame == null;
+        return existingGame.isEmpty();
     }
 }

@@ -6,6 +6,7 @@ import com.skillrowz.elojob.infrastructure.persistence.repositories.ChatJpaRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -13,9 +14,9 @@ public class ChatRepository {
     @Autowired
     private ChatJpaRepository chatJpaRepository;
 
-    public Chat findBySellerIdAndBuyerId(UUID sellerId, UUID buyerId) {
+    public Optional<Chat> findBySellerIdAndBuyerId(UUID sellerId, UUID buyerId) {
         var chat = chatJpaRepository.findBySellerIdAndBuyerId(sellerId, buyerId);
 
-        return chat.map(ChatEntity::toDomain).orElse(null);
+        return chat.map(ChatEntity::toDomain);
     }
 }
